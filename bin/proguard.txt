@@ -1,0 +1,18 @@
+# view res/layout/simple_xy_plot.xml #generated:7
+-keep class com.androidplot.xy.XYPlot { <init>(...); }
+
+# view AndroidManifest.xml #generated:17
+-keep class com.example.findprimes.MainActivity { <init>(...); }
+
+# onClick res/layout/activity_main.xml #generated:91
+-keepclassmembers class * { *** cancel(...); }
+
+# onClick res/layout/activity_main.xml #generated:18
+-keepclassmembers class * { *** responsive(...); }
+
+# onClick res/layout/activity_main.xml #generated:100
+-keepclassmembers class * { *** showGraph(...); }
+
+# onClick res/layout/activity_main.xml #generated:50
+-keepclassmembers class * { *** uploadToDrive(...); }
+

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Find Primes</string>
+    <string name="welcome_text">Find all primes up to:</string>
+    <string name="action_settings">Settings</string>
+    <string name="find_button">Find!</string>
+    <string name="drive_upload">Upload findings to Google Drive</string>
+    <string name="responsive">Is it responsive?</string>
+    <string name="clear_button">Clear</string>
+    <string name="graph_button">Visualize!</string>
+
+</resources>
