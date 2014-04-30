@@ -40,8 +40,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:ems="10"
-        android:imeOptions="actionDone"
         android:gravity="top|center"
+        android:imeOptions="actionDone"
         android:inputType="number" >
 
         <requestFocus />
@@ -103,7 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="@string/graph_button"
-        android:onClick="showGraph" />
+        android:onClick="showGraph"
+        android:text="@string/graph_button" />
 
 </RelativeLayout>

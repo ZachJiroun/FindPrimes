@@ -43,6 +43,8 @@ GoogleApiClient.OnConnectionFailedListener{
 	private TextView primesOutput;
 	private Find_N_Primes task;
 	private ProgressBar progressBar;
+	private Button googleDriveButton;
+	private Button graphPrimes;
 	private ArrayList <Integer> listOfPrimes = new ArrayList<Integer>();
 	private GoogleApiClient mGoogleApiClient;
 	private static final String TAG = "android-drive-quickstart";
@@ -60,6 +62,8 @@ GoogleApiClient.OnConnectionFailedListener{
 		numInput = (EditText) findViewById(R.id.num_primes_to_find);
 		primesOutput = (TextView) findViewById(R.id.output);
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
+		googleDriveButton = (Button) findViewById(R.id.drive_upload);
+		graphPrimes = (Button) findViewById(R.id.graph_button);
 
 		mGoogleApiClient = new GoogleApiClient.Builder(this)
 		.addApi(Drive.API)
@@ -82,6 +86,9 @@ GoogleApiClient.OnConnectionFailedListener{
 					// Starts the async task
 					progressBar.setIndeterminate(true);
 					listOfPrimes.clear();
+					// Makes sure that the user can not click the button while the async task is running
+					googleDriveButton.setClickable(false);
+					graphPrimes.setClickable(false);
 					task.execute(numToFind);
 				}
 			}
@@ -100,10 +107,17 @@ GoogleApiClient.OnConnectionFailedListener{
 
 	// Stops the AsyncTask before it finishes, and clears the TextView/resets the progress bar
 	public void cancel(View view){
-		primesOutput.setText("");
-		listOfPrimes.clear();
-		progressBar.setIndeterminate(false);
-		task.cancel(true);
+		Log.i(TAG, primesOutput.toString());
+		if(task.getStatus().equals(AsyncTask.Status.RUNNING)){
+			progressBar.setIndeterminate(false);
+			task.cancel(true);
+			primesOutput.setText("Canceled Before Completion");	
+			listOfPrimes.clear();
+		}
+		else if(task.getStatus().equals(AsyncTask.Status.FINISHED)) {
+			primesOutput.setText("");
+			listOfPrimes.clear();
+		}		
 	}
 
 	// Button to demonstrate/test responsiveness of the app
@@ -201,9 +215,11 @@ GoogleApiClient.OnConnectionFailedListener{
 			}
 			// Clears the progress bar
 			progressBar.setIndeterminate(false);
+			// Allows the buttons to be clicked again
+			googleDriveButton.setClickable(true);
+			graphPrimes.setClickable(true);
 		}
 	}
-
 
 	/* The below code handles Google Drive integration */
 	private void saveFileToDrive() {
